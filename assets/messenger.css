@@ -246,3 +246,173 @@ body.smsg-lock { overflow: hidden; }
 .smsg-field-status { display: block; margin-top: .25rem; font-size: .82rem; color: var(--smsg-muted); min-height: 1.2em; }
 .smsg-field-status.is-ok { color: #1f8a3b; }
 .smsg-field-status.is-bad { color: var(--smsg-danger); }
+
+/* مخاطبین */
+.smsg-contacts { padding: .6rem .4rem; }
+.smsg-contacts-search { width: 100% !important; flex: none; background: var(--smsg-side); margin: 0 .2rem .4rem; }
+.smsg-crow { display: flex; align-items: center; gap: .2rem; }
+.smsg-crow .smsg-row { flex: 1; min-width: 0; }
+.smsg-section-title { font-size: .8rem; font-weight: 600; color: var(--smsg-accent); padding: .6rem .8rem .2rem; }
+
+/* تیک وضعیت پیام */
+.smsg-tick { display: inline-flex; vertical-align: middle; margin-inline-start: .25rem; color: #8fa89a; }
+.smsg-tick svg { width: 15px; height: 15px; display: block; }
+.smsg-tick.st-2 { color: var(--smsg-accent); }
+.smsg-tick.st-2 svg path { stroke: currentColor; stroke-width: 1.2; }
+
+/* وضعیت آنلاین و فعالیت */
+.smsg-sub.is-act, .smsg-sub.is-online { color: var(--smsg-accent); }
+.smsg-av-wrap { position: relative; display: inline-flex; flex: none; }
+.smsg-dot {
+	position: absolute; inset-inline-end: 0; bottom: 0; width: 14px; height: 14px; border-radius: 50%;
+	background: #2ecc71; border: 2px solid var(--smsg-side);
+}
+.smsg-row.is-active .smsg-dot { border-color: var(--smsg-active); }
+
+/* دکمهٔ ارسال/میکروفن */
+.smsg-send.is-off { display: none !important; }
+
+/* ضبط ویس */
+.smsg-recbar { display: none; align-items: center; gap: .5rem; background: #fff; border-radius: 22px; padding: .25rem .5rem; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.smsg-form.is-rec .smsg-pill { display: none; }
+.smsg-form.is-rec .smsg-recbar { display: flex; }
+.smsg-rec-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--smsg-danger); flex: none; }
+.smsg-rec-time { flex: 1; font-variant-numeric: tabular-nums; }
+.smsg-rec-send { color: var(--smsg-accent) !important; }
+@media (prefers-reduced-motion: no-preference) {
+	.smsg-rec-dot { animation: smsg-blink 1s ease-in-out infinite; }
+	@keyframes smsg-blink { 50% { opacity: .25; } }
+}
+
+/* پلیر ویس */
+.smsg-voice { display: flex; align-items: center; gap: .4rem; width: min(260px, 60vw); direction: rtl; }
+.smsg-voice-btn { background: var(--smsg-accent) !important; color: #fff !important; flex: none; }
+.smsg-voice-btn:hover { background: var(--smsg-accent) !important; opacity: .9; }
+.smsg-voice-bar { flex: 1; min-width: 0; accent-color: var(--smsg-accent); }
+.smsg-voice-time { font-size: .78rem; color: var(--smsg-muted); font-variant-numeric: tabular-nums; flex: none; }
+
+/* کارت فایل */
+.smsg-file { display: flex; align-items: center; gap: .6rem; min-width: 200px; max-width: 100%; padding: .2rem 0; color: inherit !important; text-decoration: none !important; }
+.smsg-file-ic { width: 44px; height: 44px; border-radius: 50%; background: var(--smsg-accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.smsg-file-txt { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.smsg-file-name { font-weight: 600; overflow-wrap: anywhere; direction: ltr; text-align: start; }
+.smsg-file-size { font-size: .78rem; color: var(--smsg-muted); }
+.smsg-file > .smsg-ico { color: var(--smsg-muted); }
+.smsg-uploading { opacity: .65; }
+
+/* منوی پیوست */
+.smsg-form { position: relative; }
+.smsg-attach-menu {
+	display: none; position: absolute; bottom: calc(100% - .2rem); inset-inline-start: clamp(.5rem, 5vw, 11%); z-index: 6;
+	background: #fff; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.25); padding: .3rem; min-width: 200px;
+}
+.smsg-attach-menu.is-open { display: block; }
+.smsg-menu-item { display: flex !important; align-items: center; gap: .7rem; width: 100%; padding: .55rem .8rem; border-radius: 8px; text-align: start; }
+.smsg-menu-item:hover { background: var(--smsg-side); }
+.smsg-menu-item .smsg-ico { color: var(--smsg-accent); }
+
+/* تصویر و ویدئو */
+.smsg-msg.has-media { padding: .25rem .25rem .3rem; }
+.smsg-msg.has-media .smsg-text { display: block; padding: .35rem .45rem 0; }
+.smsg-msg.has-media .smsg-meta { margin-inline-end: .45rem; }
+.smsg-media {
+	position: relative; width: min(300px, 64vw); aspect-ratio: var(--ar, 1.4); overflow: hidden;
+	border-radius: 10px; background: #9db3a5; cursor: pointer;
+}
+.smsg-media.is-ready { cursor: default; }
+.smsg-media-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(14px); transform: scale(1.2); }
+.smsg-media.no-thumb .smsg-media-thumb { display: none; }
+.smsg-media-full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; background: #000; transition: opacity .35s ease; }
+.smsg-media.is-sharp .smsg-media-full { opacity: 1; }
+.smsg-media.is-sharp img.smsg-media-full { cursor: zoom-in; }
+.smsg-media video.smsg-media-full { object-fit: contain; }
+.smsg-media-act { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.smsg-media-act > * { pointer-events: auto; }
+.smsg-dlbtn, .smsg-ring {
+	position: relative; width: 52px; height: 52px; border-radius: 50% !important; background: rgba(0,0,0,.5) !important;
+	color: #fff !important; display: inline-flex !important; align-items: center; justify-content: center;
+}
+.smsg-dlbtn .smsg-ico svg { width: 26px; height: 26px; }
+.smsg-ring .smsg-ico svg { width: 20px; height: 20px; }
+.smsg-ring-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.smsg-ring-arc {
+	fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round;
+	stroke-dasharray: 131.95; stroke-dashoffset: 131.95; transition: stroke-dashoffset .25s linear;
+}
+@media (prefers-reduced-motion: no-preference) {
+	.smsg-ring-svg { animation: smsg-spin 1s linear infinite; }
+	@keyframes smsg-spin { to { transform: rotate(360deg); } }
+}
+.smsg-media-badge {
+	position: absolute; top: .45rem; inset-inline-start: .45rem; background: rgba(0,0,0,.5); color: #fff;
+	font-size: .72rem; line-height: 1.6; padding: 0 .55rem; border-radius: 999px; pointer-events: none;
+}
+
+/* نوار پخش موزیک */
+.smsg-mini { display: none; align-items: center; gap: .2rem; padding: .2rem .6rem .3rem; background: #fff; border-bottom: 1px solid var(--smsg-line); position: relative; }
+.smsg-mini.is-on { display: flex; }
+.smsg-main.is-empty .smsg-mini { display: none; }
+.smsg-mini-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; padding-inline: .4rem; }
+.smsg-mini-title { font-weight: 600; font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.smsg-mini-artist { font-size: .78rem; color: var(--smsg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.smsg-mini-artist:empty { display: none; }
+.smsg-mini .smsg-iconbtn { width: 36px; height: 36px; }
+.smsg-mini > .smsg-iconbtn:first-child { color: var(--smsg-accent); }
+.smsg-mini-bar { position: absolute; inset-inline: 0; bottom: 0; height: 2px; background: var(--smsg-line); }
+.smsg-mini-bar i { display: block; height: 100%; width: 0; background: var(--smsg-accent); }
+
+/* کارت موزیک */
+.smsg-music { display: flex; align-items: center; gap: .6rem; width: min(300px, 66vw); }
+.smsg-music-cover {
+	position: relative; width: 56px; height: 56px; border-radius: 12px !important; overflow: hidden; flex: none;
+	background: var(--smsg-accent); color: #fff; display: inline-flex !important; align-items: center; justify-content: center;
+}
+.smsg-music-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.smsg-music-pb { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.45); color: #fff; }
+.smsg-music-pb .smsg-ico svg { width: 20px; height: 20px; }
+.smsg-music-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.smsg-music-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.smsg-music-artist { font-size: .8rem; color: var(--smsg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.smsg-music-artist:empty { display: none; }
+.smsg-music-row { display: flex; align-items: center; gap: .4rem; direction: rtl; }
+.smsg-music-bar { height: 16px; }
+.smsg-music-dl { color: var(--smsg-muted) !important; flex: none; display: inline-flex; }
+.smsg-music.is-playing .smsg-music-title { color: var(--smsg-accent); }
+
+/* موقعیت مکانی */
+.smsg-loc { width: min(300px, 64vw); }
+.smsg-loc-map {
+	position: relative; display: block; width: 100%; aspect-ratio: 5 / 3; overflow: hidden; border-radius: 10px; text-decoration: none !important;
+	background: #dfeadb;
+	background-image: linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px);
+	background-size: 28px 28px;
+}
+.smsg-loc-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--smsg-danger); }
+.smsg-loc-ph .smsg-ico svg { width: 44px; height: 44px; filter: drop-shadow(0 2px 2px rgba(0,0,0,.3)); }
+.smsg-loc-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.smsg-loc-map.has-img .smsg-loc-ph { display: none; }
+.smsg-loc-info { display: flex; flex-direction: column; padding: .35rem .45rem 0; }
+.smsg-loc-title { font-weight: 600; }
+.smsg-loc-coord { font-size: .8rem; color: var(--smsg-muted); direction: rtl; }
+.smsg-loc-acts { display: flex; flex-wrap: wrap; gap: .2rem .6rem; padding: .2rem .45rem 0; }
+.smsg-loc-btn { display: inline-flex !important; align-items: center; gap: .3rem; color: var(--smsg-accent) !important; font-size: .85rem; text-decoration: none !important; }
+.smsg-loc-btn .smsg-ico svg { width: 16px; height: 16px; }
+.smsg-locpick { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: .5rem 0 .8rem; text-align: center; }
+.smsg-locpick-pin { color: var(--smsg-muted); }
+.smsg-locpick-pin.is-ok { color: var(--smsg-danger); }
+.smsg-locpick-pin .smsg-ico svg { width: 48px; height: 48px; }
+.smsg-locpick-st { font-weight: 600; direction: rtl; }
+.smsg-locpick-st.is-bad { color: var(--smsg-danger); font-weight: 400; }
+@media (prefers-reduced-motion: no-preference) {
+	.smsg-locpick-pin:not(.is-ok) { animation: smsg-blink 1.2s ease-in-out infinite; }
+}
+
+/* بلاک و تنظیمات امنیت */
+.smsg-set-note { padding: .7rem 1rem .3rem; color: var(--smsg-muted); font-size: .85rem; }
+.smsg-blockbar {
+	display: none; align-items: center; justify-content: center; gap: .6rem; padding: .6rem 1rem;
+	background: #fff; border-top: 1px solid var(--smsg-line);
+}
+.smsg-main.is-blocked .smsg-blockbar { display: flex; }
+.smsg-main.is-blocked .smsg-form { display: none; }
+.smsg-main.is-empty .smsg-blockbar { display: none; }
